@@ -1,0 +1,40 @@
+<div id="add-athlete-wrapper">
+
+  <h1 mat-dialog-title>Add New Athlete</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <label>
+        <input [(ngModel)]="athlete.firstName" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <label>
+        <input [(ngModel)]="athlete.lastName" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <label>
+        <input [(ngModel)]="athlete.country" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <label>
+        <input [(ngModel)]="athlete.age" matInput>
+      </label>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div id="add-athlete-dialog-buttons-div" mat-dialog-actions>
+  <button [mat-dialog-close]="athlete" cdkFocusInitial mat-button>Add</button>
+  <button (click)="onNoClick()" mat-button>Cancel</button>
+</div>

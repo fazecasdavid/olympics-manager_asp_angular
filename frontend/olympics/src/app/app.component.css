@@ -1,0 +1,35 @@
+h1 {
+  font-size: 32px;
+  color: #50505c;
+  padding-top: 1%;
+  padding-bottom: 0.5%;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  padding: 1% 2%;
+  text-decoration: none;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  display: inline-block;
+  background-color: #c0c0cc;
+  border-radius: 10px;
+}
+
+nav a:visited, a:link {
+  color: #404040;
+}
+
+nav a:hover {
+  color: black;
+  background-color: #d6d6df;
+}
+
+nav a.active {
+  color: black;
+}

@@ -1,0 +1,25 @@
+<div id="add-participation-wrapper">
+
+  <h1 mat-dialog-title>Add New Participation</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <label>
+        <input [(ngModel)]="participation.name" matInput>
+      </label>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <label>
+        <input [(ngModel)]="participation.country" matInput>
+      </label>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div id="add-participation-dialog-buttons-div" mat-dialog-actions>
+  <button [mat-dialog-close]="participation" cdkFocusInitial mat-button>Add</button>
+  <button (click)="onNoClick()" mat-button>Cancel</button>
+</div>

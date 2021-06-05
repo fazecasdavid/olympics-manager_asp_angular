@@ -1,0 +1,31 @@
+<div id="update-sponsorship-wrapper">
+
+  <h1 mat-dialog-title>Update Sponsor</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Competition ID</mat-label>
+      <label>
+        <input [(ngModel)]="sponsorship.competitionId" matInput>
+      </label>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sponsor ID</mat-label>
+      <label>
+        <input [(ngModel)]="sponsorship.sponsorId" matInput>
+      </label>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Money Contribution</mat-label>
+      <label>
+        <input [(ngModel)]="sponsorship.moneyContribution" matInput>
+      </label>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div id="update-sponsorship-dialog-buttons-div" mat-dialog-actions>
+  <button [mat-dialog-close]="sponsorship" cdkFocusInitial mat-button>Update</button>
+  <button (click)="onNoClick()" mat-button>Cancel</button>
+</div>

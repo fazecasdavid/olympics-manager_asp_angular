@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <div id=" add-sponsor-wrapper">
+
+    <h1 mat-dialog-title>Add New Sponsor</h1>
+
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <label>
+          <input formControlName="name" matInput required>
+        </label>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Country</mat-label>
+        <label>
+          <input formControlName="country" matInput required>
+        </label>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div id="add-sponsor-dialog-buttons-div" mat-dialog-actions>
+    <button [disabled]="!form.valid" [mat-dialog-close]="form" mat-button>Add</button>
+    <button (click)="onNoClick()" mat-button>Cancel</button>
+  </div>
+</form>

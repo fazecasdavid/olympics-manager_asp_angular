@@ -1,0 +1,40 @@
+<div id="update-competition-wrapper">
+
+  <h1 mat-dialog-title>Update Competition</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <label>
+        <input [(ngModel)]="competition.name" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field id="date">
+      <mat-label>Date</mat-label>
+      <input [(ngModel)]="competition.date" [matDatepicker]="picker" matInput>
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <label>
+        <input [(ngModel)]="competition.location" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <label>
+        <input [(ngModel)]="competition.description" matInput>
+      </label>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div id="update-competition-dialog-buttons-div" mat-dialog-actions>
+  <button [mat-dialog-close]="competition" cdkFocusInitial mat-button>Update</button>
+  <button (click)="onNoClick()" mat-button>Cancel</button>
+</div>

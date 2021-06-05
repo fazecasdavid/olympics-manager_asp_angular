@@ -1,0 +1,82 @@
+<div class="mat-elevation-z8" id="main-div">
+
+  <div id="filter-fields-and-add-button">
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyFirstNameFilter($event)" matInput placeholder="First Name Filter">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyLastNameFilter($event)" matInput placeholder="Last Name Filter">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyCountryFilter($event)" matInput placeholder="Country Filter">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyAgeFilter($event)" matInput placeholder="Age Filter">
+      </label>
+    </mat-form-field>
+
+    <ng-container>
+      <button (click)="addAthlete()" id="add-button" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <td *matCellDef="let athlete" mat-cell> {{athlete.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Last Name</th>
+      <td *matCellDef="let athlete" mat-cell> {{athlete.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Country</th>
+      <td *matCellDef="let athlete" mat-cell> {{athlete.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Age</th>
+      <td *matCellDef="let athlete" mat-cell> {{athlete.age}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deleteButton">
+      <th *matHeaderCellDef class="button-column" mat-header-cell></th>
+      <td *matCellDef="let athlete" mat-cell>
+        <button (click)="deleteAthlete(athlete)" mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updateButton">
+      <th *matHeaderCellDef class="button-column" mat-header-cell></th>
+      <td *matCellDef="let athlete" mat-cell>
+        <button (click)="updateAthlete(athlete)" mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+
+</div>

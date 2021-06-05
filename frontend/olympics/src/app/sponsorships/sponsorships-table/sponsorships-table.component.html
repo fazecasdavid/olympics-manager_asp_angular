@@ -1,0 +1,71 @@
+<div class="mat-elevation-z8" id="main-div">
+
+  <div id="filter-fields-and-add-button">
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyCompetitionIdFilter($event)" matInput placeholder="Competition ID Filter">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applySponsorIdFilter($event)" matInput placeholder="Sponsor ID Filter">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="filter-input-field">
+      <label>
+        <input (keyup)="applyMoneyContributionFilter($event)" matInput placeholder="Money Contribution Filter">
+      </label>
+    </mat-form-field>
+
+    <ng-container>
+      <button (click)="addSponsorship()" id="add-button" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="competitionId">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Competition ID</th>
+      <td *matCellDef="let sponsorship" mat-cell> {{sponsorship.competitionId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sponsorId">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Sponsor ID</th>
+      <td *matCellDef="let sponsorship" mat-cell> {{sponsorship.sponsorId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="moneyContribution">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Money Contribution</th>
+      <td *matCellDef="let sponsorship" mat-cell> {{sponsorship.moneyContribution}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deleteButton">
+      <th *matHeaderCellDef class="button-column" mat-header-cell></th>
+      <td *matCellDef="let sponsorship" mat-cell>
+        <button (click)="deleteSponsorship(sponsorship)" mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updateButton">
+      <th *matHeaderCellDef class="button-column" mat-header-cell></th>
+      <td *matCellDef="let sponsorship" mat-cell>
+        <button (click)="updateSponsorship(sponsorship)" mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+
+</div>

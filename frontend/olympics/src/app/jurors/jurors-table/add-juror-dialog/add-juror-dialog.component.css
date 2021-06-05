@@ -1,0 +1,17 @@
+#add-juror-wrapper {
+  text-align: center;
+}
+
+#add-juror-dialog-buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+#add-juror-dialog-buttons-div button {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+mat-form-field {
+  width: 90%;
+}

@@ -1,0 +1,40 @@
+<div id="add-juror-wrapper">
+
+  <h1 mat-dialog-title>Add New Juror</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <label>
+        <input [(ngModel)]="juror.firstName" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <label>
+        <input [(ngModel)]="juror.lastName" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <label>
+        <input [(ngModel)]="juror.country" matInput>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <label>
+        <input [(ngModel)]="juror.age" matInput>
+      </label>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div id="add-juror-dialog-buttons-div" mat-dialog-actions>
+  <button [mat-dialog-close]="juror" cdkFocusInitial mat-button>Add</button>
+  <button (click)="onNoClick()" mat-button>Cancel</button>
+</div>

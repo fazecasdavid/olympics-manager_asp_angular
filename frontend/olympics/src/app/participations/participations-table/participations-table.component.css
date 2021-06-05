@@ -1,0 +1,28 @@
+#main-div {
+  width: 80%;
+  margin: 2.5% auto auto;
+}
+
+#main-div table {
+  width: 100%;
+  margin: auto;
+}
+
+#filter-fields-and-add-button {
+  margin-left: 1px;
+  padding: 1% 0 0 2%;
+  background-color: white;
+}
+
+.filter-input-field {
+  padding-right: 2.5%;
+}
+
+.button-column {
+  width: 12.5%;
+}
+
+#add-button {
+  float: right;
+  margin-right: 2%;
+}

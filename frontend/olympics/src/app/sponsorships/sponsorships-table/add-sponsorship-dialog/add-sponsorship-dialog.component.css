@@ -1,0 +1,17 @@
+#add-sponsorship-wrapper {
+  text-align: center;
+}
+
+#add-sponsorship-dialog-buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+#add-sponsorship-dialog-buttons-div button {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+mat-form-field {
+  width: 90%;
+}
