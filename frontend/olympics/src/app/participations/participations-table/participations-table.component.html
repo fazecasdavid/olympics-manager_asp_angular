@@ -33,10 +33,21 @@
       <td *matCellDef="let participation" mat-cell> {{participation.competitionId}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="competitionName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Competition Name</th>
+      <td *matCellDef="let participation" mat-cell> {{participation.competitionName}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="athleteId">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Athlete ID</th>
       <td *matCellDef="let participation" mat-cell> {{participation.athleteId}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="athleteName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Athlete Name</th>
+      <td *matCellDef="let participation" mat-cell> {{participation.athleteName}} </td>
+    </ng-container>
+
 
     <ng-container matColumnDef="rank">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Rank</th>

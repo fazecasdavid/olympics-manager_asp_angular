@@ -68,7 +68,7 @@ namespace olympics.Controllers {
         [HttpGet("{moneyContribution}")]
         [Route("api/[controller]/moneyContribution")]
         [EnableCors("Angular")]
-        public async Task<ActionResult<IEnumerable<Sponsorship>>> GetSponsorshipsByCountry([FromQuery] int moneyContribution) {
+        public async Task<ActionResult<IEnumerable<Sponsorship>>> GetSponsorshipsByMoneyContribution([FromQuery] int moneyContribution) {
             return await _context.Sponsorships.Where(a => a.MoneyContribution >= moneyContribution).ToArrayAsync();
         }
 

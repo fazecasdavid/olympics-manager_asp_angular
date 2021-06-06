@@ -10,6 +10,8 @@ import {UpdateParticipationDialogComponent} from './update-participation-dialog/
 import {MatSort} from '@angular/material/sort';
 import {CompetitionService} from '../../competitions/shared/competition.service';
 import {AthleteService} from '../../athletes/shared/athlete.service';
+import {Athlete} from '../../athletes/shared/athlete.model';
+import {Competition} from '../../competitions/shared/competition.model';
 
 @Component({
   selector: 'app-participations-table',
@@ -18,11 +20,14 @@ import {AthleteService} from '../../athletes/shared/athlete.service';
 })
 export class ParticipationsTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['competitionId', 'athleteId', 'rank', 'deleteButton', 'updateButton'];
+  displayedColumns: string[] = ['competitionId', 'competitionName', 'athleteId', 'athleteName', 'rank', 'deleteButton', 'updateButton'];
 
   dataSource: MatTableDataSource<Participation>;
 
   participations: Participation[];
+
+  athletes: Athlete[];
+  competitions: Competition[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -38,13 +43,42 @@ export class ParticipationsTableComponent implements OnInit {
     this.participationService
       .getParticipations()
       .subscribe(participations => {
+
+        for (const participation of participations) {
+          const athlete = this.athletes?.find(ath => ath.id === participation?.athleteId);
+          const competition = this.competitions?.find(comp => comp.id === participation?.competitionId);
+
+          participation.athleteName = athlete?.lastName + ' ' + athlete?.firstName;
+          participation.competitionName = competition?.name;
+        }
+
         this.participations = participations;
         this.updateDataSource(participations);
       });
   }
 
+  fetchAthletes(): void {
+    this.athleteService
+      .getAthletes()
+      .subscribe(athletes => {
+        this.athletes = athletes;
+        this.fetchCompetitions();
+      });
+  }
+
+  fetchCompetitions(): void {
+    this.competitionService
+      .getCompetitions()
+      .subscribe(competitions => {
+        this.competitions = competitions;
+        this.reloadTable();
+      });
+  }
+
   ngOnInit(): void {
-    this.reloadTable();
+    // this.fetchCompetitions();
+    this.fetchAthletes();
+    // this.reloadTable();
   }
 
   updateDataSource(participations: Participation[]): void {
@@ -78,7 +112,7 @@ export class ParticipationsTableComponent implements OnInit {
               icon: 'success'
             }
           );
-          this.reloadTable();
+          this.ngOnInit();
         },
         errorResponse => {
           console.log(errorResponse);
@@ -113,7 +147,7 @@ export class ParticipationsTableComponent implements OnInit {
                     icon: 'success'
                   }
                 );
-                this.reloadTable();
+                this.ngOnInit();
               },
               errorResponse => {
                 console.log(errorResponse);
@@ -134,7 +168,7 @@ export class ParticipationsTableComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AddParticipationDialogComponent, {
       width: '20%',
-      data: dialogData
+      data: {participation: dialogData, athletes: this.athletes, competitions: this.competitions}
     });
 
     dialogRef
@@ -150,7 +184,7 @@ export class ParticipationsTableComponent implements OnInit {
                     icon: 'success'
                   }
                 );
-                this.reloadTable();
+                this.ngOnInit();
               },
               errorResponse => {
                 swal.fire({

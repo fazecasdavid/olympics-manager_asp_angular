@@ -3,22 +3,41 @@
   <h1 mat-dialog-title>Add New Participation</h1>
 
   <div mat-dialog-content>
+    <!--    <mat-form-field>-->
+    <!--      <mat-label>Competition ID</mat-label>-->
+    <!--      <label>-->
+    <!--        <input [(ngModel)]="data.participation.competitionId" matInput type="number">-->
+    <!--      </label>-->
+    <!--    </mat-form-field>-->
+
+
     <mat-form-field>
-      <mat-label>Competition ID</mat-label>
-      <label>
-        <input [(ngModel)]="participation.competitionId" matInput type="number">
-      </label>
+      <mat-label>Competition</mat-label>
+      <mat-select [(ngModel)]="competition" required>
+        <mat-option *ngFor="let comp of data.competitions" [value]="comp">{{comp.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
+
     <mat-form-field>
-      <mat-label>Athlete ID</mat-label>
-      <label>
-        <input [(ngModel)]="participation.athleteId" matInput type="number">
-      </label>
+      <mat-label>Athlete</mat-label>
+      <mat-select [(ngModel)]="athlete" required>
+        <mat-option *ngFor="let ath of data.athletes" [value]="ath">{{ath.firstName + ' ' + ath.lastName}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
+    <!--    <mat-form-field>-->
+    <!--      <mat-label>Athlete ID</mat-label>-->
+    <!--      <label>-->
+    <!--        <input [(ngModel)]="data.participation.athleteId" matInput type="number">-->
+    <!--      </label>-->
+    <!--    </mat-form-field>-->
     <mat-form-field>
       <mat-label>Rank</mat-label>
       <label>
-        <input [(ngModel)]="participation.rank" matInput type="number">
+        <input [(ngModel)]="data.participation.rank" matInput type="number">
       </label>
     </mat-form-field>
   </div>
@@ -26,6 +45,7 @@
 </div>
 
 <div id="add-participation-dialog-buttons-div" mat-dialog-actions>
-  <button [mat-dialog-close]="participation" cdkFocusInitial mat-button>Add</button>
+  <!--  <button [mat-dialog-close]="data.participation" cdkFocusInitial mat-button>Add</button>-->
+  <button (click)="onAddClick()" cdkFocusInitial mat-button>Add</button>
   <button (click)="onNoClick()" mat-button>Cancel</button>
 </div>

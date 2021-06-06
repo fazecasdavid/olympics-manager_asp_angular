@@ -52,6 +52,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {SponsorsEffects} from './sponsors/shared/sponsor.effects';
 import {sponsorReducer} from './sponsors/shared/sponsor.reducer';
 import {storeLogger} from 'ngrx-store-logger';
+import {MatSelectModule} from '@angular/material/select';
 
 export function logger(reducer: ActionReducer<any>): any {
   return storeLogger()(reducer);
@@ -110,7 +111,8 @@ export const metaReducers = [];
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([SponsorsEffects]),
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    MatSelectModule
   ],
   providers: [AthleteService, ParticipationService, CompetitionService, SponsorshipService, SponsorService, JurorService],
   bootstrap: [AppComponent]
