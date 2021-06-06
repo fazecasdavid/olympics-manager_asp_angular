@@ -1,13 +1,18 @@
 export class Participation {
 
   id: number;
-  name: string;
-  country: string;
+  athleteId: number;
+  competitionId: number;
+  rank: number;
 
-  constructor(id: number, name: string, country: string) {
+  athleteName: string;
+  competitionName: string;
+
+  constructor(id: number, competitionId: number, athleteId: number, rank: number) {
     this.id = id;
-    this.name = name;
-    this.country = country;
+    this.competitionId = competitionId;
+    this.athleteId = athleteId;
+    this.rank = rank;
   }
 
 }

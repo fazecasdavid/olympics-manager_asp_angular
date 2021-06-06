@@ -6,7 +6,7 @@ import {Participation} from './participation.model';
 @Injectable()
 export class ParticipationService {
 
-  private participationsUrl = 'https://localhost:44397/api/Participation';
+  private participationsUrl = 'http://localhost:8080/api/participations';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -29,6 +29,11 @@ export class ParticipationService {
   addParticipation(participation: Participation): Observable<any> {
     return this.httpClient
       .post<any>(this.participationsUrl, participation);
+  }
+
+  getParticipationsByCountry(filterValue: string): Observable<Participation[]> {
+    return this.httpClient
+      .get<Participation[]>(this.participationsUrl + '/country?' + 'country=' + filterValue);
   }
 
 }

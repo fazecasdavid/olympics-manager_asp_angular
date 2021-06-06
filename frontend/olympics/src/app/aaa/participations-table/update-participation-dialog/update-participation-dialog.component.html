@@ -4,21 +4,15 @@
 
   <div mat-dialog-content>
     <mat-form-field>
-      <mat-label>Competition ID</mat-label>
+      <mat-label>Name</mat-label>
       <label>
-        <input [(ngModel)]="participation.competitionId" matInput type="number">
+        <input [(ngModel)]="participation.name" matInput>
       </label>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Athlete ID</mat-label>
+      <mat-label>Country</mat-label>
       <label>
-        <input [(ngModel)]="participation.athleteId" matInput type="number">
-      </label>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Rank</mat-label>
-      <label>
-        <input [(ngModel)]="participation.rank" matInput type="number">
+        <input [(ngModel)]="participation.country" matInput>
       </label>
     </mat-form-field>
   </div>

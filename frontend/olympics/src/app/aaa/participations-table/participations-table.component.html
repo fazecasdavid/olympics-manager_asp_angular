@@ -3,21 +3,15 @@
   <div id="filter-fields-and-add-button">
     <mat-form-field class="filter-input-field">
       <label>
-        <input (keyup)="applyCompetitionIdFilter($event)" matInput placeholder="Competition ID Filter">
+        <input (keyup)="applyNameFilter($event)" matInput placeholder="Name Filter">
       </label>
     </mat-form-field>
 
     <mat-form-field class="filter-input-field">
       <label>
-        <input (keyup)="applyAthleteIdFilter($event)" matInput placeholder="Athlete ID Filter">
+        <input (keyup)="applyCountryFilter($event)" matInput placeholder="Country Filter">
       </label>
     </mat-form-field>
-
-<!--    <mat-form-field class="filter-input-field">-->
-<!--      <label>-->
-<!--        <input (keyup)="applyMoneyContributionFilter($event)" matInput placeholder="Money Contribution Filter">-->
-<!--      </label>-->
-<!--    </mat-form-field>-->
 
     <ng-container>
       <button (click)="addParticipation()" id="add-button" mat-icon-button>
@@ -28,19 +22,14 @@
 
   <table [dataSource]="dataSource" mat-table matSort>
 
-    <ng-container matColumnDef="competitionId">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Competition ID</th>
-      <td *matCellDef="let participation" mat-cell> {{participation.competitionId}} </td>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Name</th>
+      <td *matCellDef="let participation" mat-cell>{{participation.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="athleteId">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Athlete ID</th>
-      <td *matCellDef="let participation" mat-cell> {{participation.athleteId}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="rank">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Rank</th>
-      <td *matCellDef="let participation" mat-cell> {{participation.rank}} </td>
+    <ng-container matColumnDef="country">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Country</th>
+      <td *matCellDef="let participation" mat-cell> {{participation.country}} </td>
     </ng-container>
 
     <ng-container matColumnDef="deleteButton">

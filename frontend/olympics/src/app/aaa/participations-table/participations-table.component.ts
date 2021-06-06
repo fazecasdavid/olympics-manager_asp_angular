@@ -4,12 +4,10 @@ import {ParticipationService} from '../shared/participation.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import swal from 'sweetalert2';
-import {AddParticipationDialogComponent} from './add-participation-dialog/add-participation-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {UpdateParticipationDialogComponent} from './update-participation-dialog/update-participation-dialog.component';
+import {AddParticipationDialogComponent} from './add-participation-dialog/add-participation-dialog.component';
 import {MatSort} from '@angular/material/sort';
-import {CompetitionService} from '../../competitions/shared/competition.service';
-import {AthleteService} from '../../athletes/shared/athlete.service';
 
 @Component({
   selector: 'app-participations-table',
@@ -18,7 +16,7 @@ import {AthleteService} from '../../athletes/shared/athlete.service';
 })
 export class ParticipationsTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['competitionId', 'athleteId', 'rank', 'deleteButton', 'updateButton'];
+  displayedColumns: string[] = ['name', 'country', 'deleteButton', 'updateButton'];
 
   dataSource: MatTableDataSource<Participation>;
 
@@ -28,10 +26,7 @@ export class ParticipationsTableComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private participationService: ParticipationService,
-              private competitionService: CompetitionService,
-              private athleteService: AthleteService,
-              public dialog: MatDialog) {
+  constructor(private participationService: ParticipationService, public dialog: MatDialog) {
   }
 
   reloadTable(): void {
@@ -53,18 +48,20 @@ export class ParticipationsTableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyCompetitionIdFilter(event: KeyboardEvent): void {
+  applyNameFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    const filteredParticipations = this.participations
-      .filter(participation => participation.competitionId.toString().toLowerCase().includes(filterValue));
+    const filteredParticipations = this.participations.filter(participation => participation.name.toLowerCase().includes(filterValue));
     this.updateDataSource(filteredParticipations);
   }
 
-  applyAthleteIdFilter(event: KeyboardEvent): void {
+  applyCountryFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    const filteredParticipations = this.participations
-      .filter(participation => participation.athleteId.toString().toLowerCase().includes(filterValue));
-    this.updateDataSource(filteredParticipations);
+    this.participationService
+      .getParticipationsByCountry(filterValue)
+      .subscribe(participations => {
+        this.participations = participations;
+        this.updateDataSource(participations);
+      });
   }
 
   deleteParticipation(participation: Participation): void {
@@ -72,7 +69,6 @@ export class ParticipationsTableComponent implements OnInit {
       .deleteParticipation(participation.id)
       .subscribe(
         successResponse => {
-          console.log(successResponse);
           swal.fire({
               title: 'The participation was successfully deleted! 🙂',
               icon: 'success'
@@ -81,7 +77,6 @@ export class ParticipationsTableComponent implements OnInit {
           this.reloadTable();
         },
         errorResponse => {
-          console.log(errorResponse);
           swal.fire({
               title: 'The participation could not be deleted! 🙁',
               icon: 'error'
@@ -92,7 +87,7 @@ export class ParticipationsTableComponent implements OnInit {
   }
 
   updateParticipation(participation: Participation): void {
-    const dialogData = new Participation(participation.id, participation.competitionId, participation.athleteId, participation.rank);
+    const dialogData = new Participation(participation.id, participation.name, participation.country);
 
     const dialogRef = this.dialog.open(UpdateParticipationDialogComponent, {
       width: '20%',
@@ -129,7 +124,7 @@ export class ParticipationsTableComponent implements OnInit {
   }
 
   addParticipation(): void {
-    const dialogData = new Participation(null, null, null, null);
+    const dialogData = new Participation(null, null, null);
     console.log(dialogData);
 
     const dialogRef = this.dialog.open(AddParticipationDialogComponent, {
