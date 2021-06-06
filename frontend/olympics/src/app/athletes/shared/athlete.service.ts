@@ -6,7 +6,7 @@ import {Athlete} from './athlete.model';
 @Injectable()
 export class AthleteService {
 
-  private athletesUrl = 'http://localhost:8080/api/athletes';
+  private athletesUrl = 'https://localhost:44397/api/Athlete';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -27,6 +27,7 @@ export class AthleteService {
   }
 
   addAthlete(athlete: Athlete): Observable<any> {
+    console.log(athlete.id);
     return this.httpClient
       .post<any>(this.athletesUrl, athlete);
   }

@@ -6,7 +6,7 @@ import {Competition} from './competition.model';
 @Injectable()
 export class CompetitionService {
 
-  private competitionsUrl = 'http://localhost:8080/api/competitions';
+  private competitionsUrl = 'https://localhost:44397/api/Competition';
 
   constructor(private httpClient: HttpClient) {
   }

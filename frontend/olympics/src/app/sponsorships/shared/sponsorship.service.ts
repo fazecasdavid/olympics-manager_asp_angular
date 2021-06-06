@@ -6,7 +6,7 @@ import {Sponsorship} from './sponsorship.model';
 @Injectable()
 export class SponsorshipService {
 
-  private sponsorshipsUrl = 'http://localhost:8080/api/sponsorships';
+  private sponsorshipsUrl = 'https://localhost:44397/api/Sponsorship';
 
   constructor(private httpClient: HttpClient) {
   }

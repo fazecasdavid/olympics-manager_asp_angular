@@ -6,7 +6,7 @@ import {Juror} from './juror.model';
 @Injectable()
 export class JurorService {
 
-  private jurorsUrl = 'http://localhost:8080/api/jurors';
+  private jurorsUrl = 'https://localhost:44397/api/Juror';
 
   constructor(private httpClient: HttpClient) {
   }
